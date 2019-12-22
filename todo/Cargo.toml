@@ -10,6 +10,7 @@ actix-files = "0.2.0"
 actix-session = "0.3.0"
 actix-redis = {version = "0.8.0", features = ["web"]}
 actix-rt = "1.0.0"
+actix-service = "1.0.0"
 dotenv = "0.13.0"
 env_logger = "0.5.10"
 futures = "0.3.1"

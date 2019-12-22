@@ -19,6 +19,7 @@ use listenfd::ListenFd;
 use tera::Tera;
 
 mod api;
+mod cas;
 mod db;
 mod model;
 mod schema;
@@ -63,6 +64,7 @@ async fn main() -> io::Result<()> {
             .wrap(Logger::default())
             .wrap(session_store)
             .wrap(error_handlers)
+            .wrap(cas::CheckLogin)
             .service(web::resource("/").route(web::get().to(api::index)))
             .service(web::resource("/todo").route(web::post().to(api::create)))
             .service(web::resource("/todo/{id}").route(web::post().to(api::update)))

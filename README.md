@@ -1,6 +1,6 @@
-# Docker actix postgres redis todo example
+# Class Q&A
 
-This is a Dockerized version of the
+This is based on the 
 [actix todo example](https://github.com/actix/examples/tree/master/todo)
 in
 [Rust](https://www.rust-lang.org/).

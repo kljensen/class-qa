@@ -14,6 +14,21 @@ services:
     ports:
       - "127.0.0.1:6379:6379"
 
+  mockcas:
+    build: mockcas
+    working_dir: /opt/app
+    ports:
+      - "127.0.0.1:${MOCKCAS_HOST_PORT}:${MOCKCAS_PORT}"
+    environment:
+      - DEVELOPMENT=${DEVELOPMENT}
+      - PORT=${MOCKCAS_PORT}
+    volumes:
+      # Note that the package.json-like files were moved into the
+      # container as specified by the elmclient/Dockerfile.
+      - "./mockcas/src:/opt/app/src"
+      - "./mockcas/run.sh:/opt/app/run.sh"
+    entrypoint: "/opt/app/run.sh"
+
   todo:
     build: todo
     working_dir: /app
@@ -25,6 +40,7 @@ services:
     depends_on:
       - db
       - redis
+      - mockcas
     links:
       - db:db
       - redis:redis
